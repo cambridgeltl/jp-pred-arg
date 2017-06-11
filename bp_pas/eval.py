@@ -8,7 +8,7 @@ import sys
 from collections import defaultdict
 from collections import Counter
 
-def evaluate(test_pases, gold_pases):
+def evaluate(test_pases, gold_pases, verbose=False):
     case_counts = defaultdict(lambda: Counter())
     total_correct = 0
     total_test = 0
@@ -20,6 +20,23 @@ def evaluate(test_pases, gold_pases):
         for arg in tpas.args:
             if arg in gpas.args:
                 total_correct += 1
+            elif verbose:
+
+                print('Predicted {}({}) --{}--> {}({})'.format(tpas.pred.word_form,
+                                                                   tpas.pred.word_index,
+                                                                   arg.arg_type,
+                                                                   arg.word_form,
+                                                                   arg.word_index))
+                correction_lst =  [gold_arg for gold_arg in gpas.args if arg.word_index == gold_arg.word_index]
+                if correction_lst:
+                    print('  should be: --> {}'.format(correction_lst[0].arg_type))
+                else:
+                    print('  It should have been NIL')
+                desired_arg_lst = [gold_arg for gold_arg in gpas.args if arg.arg_type == gold_arg.arg_type]
+                for gold_arg in desired_arg_lst:
+                    print('  Gold {} relation: --> {}({})'.format(arg.arg_type, gold_arg.word_form, gold_arg.word_index))
+                print()
+
         total_test += len(tpas.args)
         total_gold += len(gpas.args)
     print('Prec = ({}/{}) = {}'.format(total_correct, total_test, total_correct * 100.0 / total_test))

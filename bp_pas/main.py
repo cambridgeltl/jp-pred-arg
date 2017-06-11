@@ -4,7 +4,6 @@ import bp_pas.corpus as corpus
 import bp_pas.stats as stats
 import sys
 import gflags
-#from bp_pas.eval import SampleEval, ResultEval, ntc_sent2conll
 from bp_pas.eval import evaluate
 
 

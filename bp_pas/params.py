@@ -12,3 +12,10 @@ def load_defaults():
     gflags.DEFINE_string('test_data', 'data/NTC_1.5/processed/test.utf8', 'the path to the test data file')
     gflags.DEFINE_string('dev_data', 'data/NTC_1.5/processed/dev.utf8', 'the path to the dev data file')
     gflags.DEFINE_integer('max_train_instances', 100000, 'max number of instances to read for each train/test/dev set')
+
+    ### Model Parameters
+    ## Representation
+    gflags.DEFINE_boolean('use_context', True, 'construct the representation from LSTM context embeddings')
+    gflags.DEFINE_boolean('use_sp', True, 'construct the representation directly from pred/arg embeddings')
+    gflags.DEFINE_integer('context_dims', 20, 'output dimension for LSTM context embeddings')
+    gflags.DEFINE_integer('sp_dims', 8, 'dimensionality of arg embedding for selectional preference')
