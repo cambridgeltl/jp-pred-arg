@@ -54,13 +54,8 @@ class NTCLoader():
             if word.is_prd:
                 pred = Predicate(word.index, word.form)
                 args = []
-#                print(word.index)
-#                print(word.arg_indices)
-#                print(word.arg_types)
-#                print()
                 for i in range(len(types)):
                     arg_idx = word.arg_indices[i]
-                    arg_type = word.arg_types[i]
                     if arg_idx >= 0:
                         args.append(Argument(words[arg_idx].index,
                                              words[arg_idx].form,

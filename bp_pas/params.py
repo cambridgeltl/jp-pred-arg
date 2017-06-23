@@ -19,3 +19,5 @@ def load_defaults():
     gflags.DEFINE_boolean('use_sp', True, 'construct the representation directly from pred/arg embeddings')
     gflags.DEFINE_integer('context_dims', 20, 'output dimension for LSTM context embeddings')
     gflags.DEFINE_integer('sp_dims', 8, 'dimensionality of arg embedding for selectional preference')
+    gflags.DEFINE_integer('num_context_layers', 2, 'number of layers in the context LSTM')
+    gflags.DEFINE_float('context_dropout', 0.0, 'amount of dropout on each LSTM layer in the context representation')
